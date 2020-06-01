@@ -4,6 +4,7 @@ export interface BasicTableProps {
   searchText: string;
   sortColumns: SortColumns;
   data: TabularData;
+  handleSortBy: (i: number) => void;
 }
 
 type SortColumns = {
@@ -35,10 +36,6 @@ class BasicTable extends React.Component<BasicTableProps, {}> {
     super(props);
   }
 
-  handleSortHeader(i: Number) {
-    console.log("Sorting by " + i);
-  }
-
   getRenderedRows() {
     var rows = [];
     const searchText = this.props.searchText.toLowerCase();
@@ -68,7 +65,7 @@ class BasicTable extends React.Component<BasicTableProps, {}> {
     let headers = [];
     this.props.data.headers.forEach((element, index) => {
       let header = (
-        <th key={element.name} onClick={() => this.handleSortHeader(index)}>
+        <th key={element.name} onClick={() => this.props.handleSortBy(index)}>
           {element.name}
         </th>
       );
