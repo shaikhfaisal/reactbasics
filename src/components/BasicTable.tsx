@@ -13,7 +13,7 @@ type SortColumns = {
 
 type TabularData = {
   headers: HeaderRow;
-  rows: PersonRows;
+  rows: DataRows;
 };
 
 type HeaderRow = Array<Header>;
@@ -22,13 +22,10 @@ type Header = {
   name: string;
 };
 
-type PersonRows = Array<Person>;
+type DataRows = Array<Data>;
 
-type Person = {
+type Data = {
   id: number;
-  name: string;
-  age: number;
-  city: string;
 };
 
 class BasicTable extends React.Component<BasicTableProps, {}> {
@@ -40,13 +37,17 @@ class BasicTable extends React.Component<BasicTableProps, {}> {
     var rows = [];
     const searchText = this.props.searchText.toLowerCase();
     this.props.data.rows.forEach((element) => {
-      if (
-        this.props.searchText &&
-        element.name.toLowerCase().indexOf(searchText) == -1 &&
-        element.city.toLowerCase().indexOf(searchText) == -1 &&
-        element.age != parseInt(searchText)
-      ) {
-        return;
+      if (this.props.searchText) {
+        let searchTextFound = false;
+        for (let [k, v] of Object.entries(element)) {
+          if (v.toString().toLowerCase().indexOf(searchText) >= 0) {
+            searchTextFound = true;
+            break;
+          }
+        }
+        if (searchTextFound === false) {
+          return;
+        }
       }
 
       let row_tds = Object.keys(element).map((k) => {

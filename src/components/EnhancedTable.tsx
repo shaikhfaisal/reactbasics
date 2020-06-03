@@ -33,6 +33,7 @@ type Person = {
   name: string;
   age: number;
   city: string;
+  country?: string;
 };
 
 export class EnhancedTable extends React.Component<
@@ -50,14 +51,19 @@ export class EnhancedTable extends React.Component<
         2: "asc",
       },
       data: {
-        headers: [{ name: "Name" }, { name: "Age" }, { name: "Location" }],
+        headers: [
+          { name: "Name" },
+          { name: "Age" },
+          { name: "Location" },
+          { name: "Country" },
+        ],
         rows: [
-          { id: 1, name: "Faisal", age: 39, city: "London" },
+          { id: 1, name: "Faisal", age: 39, city: "London", country: "UK" },
           { id: 2, name: "Aliya", age: 39, city: "London" },
           { id: 3, name: "Ibrahim", age: 7, city: "London" },
           { id: 4, name: "Hayaa", age: 5, city: "London" },
           { id: 5, name: "Fahd", age: 36, city: "Portland" },
-          { id: 6, name: "Fatima", age: 33, city: "Dubai" },
+          { id: 6, name: "Fatima", age: 33, city: "Dubai", country: "UAE" },
           { id: 7, name: "Sana", age: 34, city: "Dubai" },
         ],
       },
