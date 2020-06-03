@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react",
+    "lib": ["es2017", "ES2016", "dom"]
   },
   "exclude": ["node_modules", "build"]
 }

@@ -17,7 +17,7 @@ type SortColumns = {
 
 type TabularData = {
   headers: HeaderRow;
-  rows: PersonRows;
+  rows: DataRows;
 };
 
 type HeaderRow = Array<Header>;
@@ -26,7 +26,7 @@ type Header = {
   name: string;
 };
 
-type PersonRows = Array<Person>;
+type DataRows = Array<Person>;
 
 type Person = {
   id: number;

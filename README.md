@@ -19,7 +19,7 @@ npx webpack
 
 TODO:
 
-- sort columns both ways
+- generic data
 - reuse interfaces? how to think about this?
 - unit testing react components
 - e2e or UI testing ?

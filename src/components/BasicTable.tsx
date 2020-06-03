@@ -48,19 +48,18 @@ class BasicTable extends React.Component<BasicTableProps, {}> {
       ) {
         return;
       }
-      let row = (
-        <tr key={element.id}>
-          <td>{element.name}</td>
-          <td>{element.age}</td>
-          <td>{element.city}</td>
-        </tr>
-      );
+
+      let row_tds = Object.keys(element).map((k) => {
+        if (k == "id") {
+          return;
+        }
+        return <td key={element.id + "-" + k}>{element[k]}</td>;
+      });
+      let row = <tr key={element.id}>{row_tds}</tr>;
       rows.push(row);
     });
-
     return rows;
   }
-
   getRenderedHeaders() {
     let headers = [];
     this.props.data.headers.forEach((element, index) => {
@@ -73,6 +72,7 @@ class BasicTable extends React.Component<BasicTableProps, {}> {
     });
     return headers;
   }
+
   render() {
     let rows = this.getRenderedRows();
     let headers = this.getRenderedHeaders();
