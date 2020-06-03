@@ -7,8 +7,10 @@ interface EnhancedTableProps {}
 interface EnhancedTableState {
   searchText: string;
   sortColumns: SortColumns;
+  sortAscending: boolean;
   data: TabularData;
 }
+
 type SortColumns = {
   [key: number]: string;
 };
@@ -41,6 +43,7 @@ export class EnhancedTable extends React.Component<
     super(props);
     this.state = {
       searchText: "",
+      sortAscending: true,
       sortColumns: {
         0: "asc",
         1: "asc",
@@ -81,18 +84,29 @@ export class EnhancedTable extends React.Component<
 
   handleSortBy = (i: number) => {
     let data = this.state.data;
+    let direction_of_sort = 1;
+    if (!this.state.sortAscending) {
+      direction_of_sort = -1;
+    }
+
     switch (i) {
       case 0:
-        data.rows.sort((a, b) => (a.name > b.name ? 1 : -1));
+        data.rows.sort((a, b) =>
+          a.name > b.name ? 1 * direction_of_sort : -1 * direction_of_sort
+        );
         break;
       case 1:
-        data.rows.sort((a, b) => (a.age > b.age ? 1 : -1));
+        data.rows.sort((a, b) =>
+          a.age > b.age ? 1 * direction_of_sort : -1 * direction_of_sort
+        );
         break;
       case 2:
-        data.rows.sort((a, b) => (a.city > b.city ? 1 : -1));
+        data.rows.sort((a, b) =>
+          a.city > b.city ? 1 * direction_of_sort : -1 * direction_of_sort
+        );
         break;
     }
 
-    this.setState({ data: data });
+    this.setState({ data: data, sortAscending: !this.state.sortAscending });
   };
 }
