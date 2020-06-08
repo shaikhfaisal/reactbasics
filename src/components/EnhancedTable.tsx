@@ -33,7 +33,8 @@ type Person = {
   name: string;
   age: number;
   city: string;
-  country?: string;
+  country: string;
+  notes: string;
 };
 
 export class EnhancedTable extends React.Component<
@@ -56,15 +57,65 @@ export class EnhancedTable extends React.Component<
           { name: "Age" },
           { name: "Location" },
           { name: "Country" },
+          { name: "Notes" },
         ],
         rows: [
-          { id: 1, name: "Faisal", age: 39, city: "London", country: "UK" },
-          { id: 2, name: "Aliya", age: 39, city: "London" },
-          { id: 3, name: "Ibrahim", age: 7, city: "London" },
-          { id: 4, name: "Hayaa", age: 5, city: "London" },
-          { id: 5, name: "Fahd", age: 36, city: "Portland" },
-          { id: 6, name: "Fatima", age: 33, city: "Dubai", country: "UAE" },
-          { id: 7, name: "Sana", age: 34, city: "Dubai" },
+          {
+            id: 1,
+            name: "Faisal",
+            age: 39,
+            city: "London",
+            country: "UK",
+            notes: "",
+          },
+          {
+            id: 2,
+            name: "Aliya",
+            age: 39,
+            city: "London",
+            country: "",
+            notes: "Note 1",
+          },
+          {
+            id: 3,
+            name: "Ibrahim",
+            age: 7,
+            city: "London",
+            country: "",
+            notes: "",
+          },
+          {
+            id: 4,
+            name: "Hayaa",
+            age: 5,
+            city: "London",
+            country: "",
+            notes: "",
+          },
+          {
+            id: 5,
+            name: "Fahd",
+            age: 36,
+            city: "Portland",
+            country: "",
+            notes: "",
+          },
+          {
+            id: 6,
+            name: "Fatima",
+            age: 33,
+            city: "Dubai",
+            country: "UAE",
+            notes: "",
+          },
+          {
+            id: 7,
+            name: "Sana",
+            age: 34,
+            city: "Dubai",
+            country: "",
+            notes: "",
+          },
         ],
       },
     };
@@ -95,23 +146,14 @@ export class EnhancedTable extends React.Component<
       direction_of_sort = -1;
     }
 
-    switch (i) {
-      case 0:
-        data.rows.sort((a, b) =>
-          a.name > b.name ? 1 * direction_of_sort : -1 * direction_of_sort
-        );
-        break;
-      case 1:
-        data.rows.sort((a, b) =>
-          a.age > b.age ? 1 * direction_of_sort : -1 * direction_of_sort
-        );
-        break;
-      case 2:
-        data.rows.sort((a, b) =>
-          a.city > b.city ? 1 * direction_of_sort : -1 * direction_of_sort
-        );
-        break;
-    }
+    data.rows.sort((a, b) => {
+      let values_a = Object.values(a);
+      let values_b = Object.values(b);
+      if (values_a[i + 1] > values_b[i + 1]) {
+        return 1 * direction_of_sort;
+      }
+      return -1 * direction_of_sort;
+    });
 
     this.setState({ data: data, sortAscending: !this.state.sortAscending });
   };

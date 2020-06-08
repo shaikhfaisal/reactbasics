@@ -37,6 +37,9 @@ class BasicTable extends React.Component<BasicTableProps, {}> {
     var rows = [];
     const searchText = this.props.searchText.toLowerCase();
     this.props.data.rows.forEach((element) => {
+      // If a search term is provided, this searches for the searchterm
+      // in the data and excludes the row from being rendered if there
+      // is no match.
       if (this.props.searchText) {
         let searchTextFound = false;
         for (let [k, v] of Object.entries(element)) {

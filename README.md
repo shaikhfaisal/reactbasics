@@ -15,11 +15,12 @@ Run the following command to start watching the files and:
     npx babel --plugins @babel/plugin-proposal-class-properties --watch src --out-dir . --presets @babel/preset-react --verbose
 
 Run the following command to compile TS to JS and build the app
-npx webpack
+npx webpack --watch
 
 TODO:
 
-- generic data
+- Pagination
+- HoC
 - reuse interfaces? how to think about this?
 - unit testing react components
 - e2e or UI testing ?
