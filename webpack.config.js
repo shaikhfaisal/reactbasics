@@ -3,6 +3,7 @@ module.exports = {
     entry: {
         helloworld: './src/index.tsx',
         tableApp: './src/reactbasics.tsx',
+        youtube: './src/youtube.tsx',
     },
 
     mode: "production",

@@ -19,7 +19,9 @@ npx webpack --watch
 
 TODO:
 
+- Youtube App
 - Pagination
+- Redux
 - HoC
 - reuse interfaces? how to think about this?
 - unit testing react components
